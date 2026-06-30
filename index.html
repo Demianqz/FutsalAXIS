@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleksi Tim Futsal SMAN 1 Rogojampi | AXIS Event</title>
     <style>
-        /* ========== SEMUA STYLE CSS SEBELUMNYA TIDAK BERUBAH ========== */
+        /* ========== SEMUA STYLE CSS TIDAK BERUBAH ========== */
         :root {
             --bg-dark: #111111;
             --bg-card: #1b1b1b;
@@ -421,16 +421,19 @@
 <body>
     <canvas id="particles-canvas"></canvas>
 
+    <!-- SUCCESS OVERLAY -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div class="success-check">✓</div>
             <div class="success-title">Pendaftaran Berhasil!</div>
-            <div class="success-msg">Data kamu telah terkirim. Tunggu info selanjutnya ya, calon bintang futsal! ⚽</div>
+            <div class="success-msg">Data kamu telah terkirim ke Google Form. Tunggu info selanjutnya ya, calon bintang futsal! ⚽</div>
             <button class="success-close" onclick="closeSuccess()">Tutup</button>
         </div>
     </div>
 
+    <!-- MAIN WRAPPER -->
     <div class="main-wrapper">
+        <!-- NAVIGATION -->
         <nav class="nav" id="navbar">
             <a href="#" class="nav-logo">
                 <span class="logo-dot"></span> SMANSA ROGOJAMPI
@@ -438,6 +441,7 @@
             <a href="#form-section" class="nav-cta">Daftar Sekarang</a>
         </nav>
 
+        <!-- HERO SECTION -->
         <section class="hero" id="hero">
             <div class="hero-bg-pattern"></div>
             <div class="hero-spotlight"></div>
@@ -469,6 +473,7 @@
             </div>
         </section>
 
+        <!-- FORM SECTION -->
         <section class="section" id="form-section">
             <div class="section-header reveal">
                 <span class="section-label">Formulir Pendaftaran</span>
@@ -477,303 +482,25 @@
             </div>
             <div class="form-section reveal reveal-delay-1">
                 <div class="form-card">
-                    <form id="registrationForm" novalidate>
+                    <!-- ============================================ -->
+                    <!-- FORM TERHUBUNG KE GOOGLE FORM KAMU -->
+                    <!-- ============================================ -->
+                    <form id="registrationForm" action="https://docs.google.com/forms/d/e/1FAIpQLScmXMaHqH4XJDhGrgt7kq_TUlYOCJ6NWwW4HPZYfFa7wUm_eQ/formResponse" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit()">
+                        <iframe name="hidden_iframe" style="display:none;"></iframe>
+                        
+                        <!-- Hidden inputs untuk Google Form -->
+                        <input type="hidden" name="entry.0" id="entry0">
+                        <input type="hidden" name="entry.1" id="entry1">
+                        <input type="hidden" name="entry.2" id="entry2">
+                        <input type="hidden" name="entry.3" id="entry3">
+                        <input type="hidden" name="entry.4" id="entry4">
+                        <input type="hidden" name="entry.5" id="entry5">
+                        <input type="hidden" name="entry.6" id="entry6">
+                        <input type="hidden" name="entry.7" id="entry7">
+                        <input type="hidden" name="entry.8" id="entry8">
+                        <input type="hidden" name="entry.9" id="entry9">
+                        <input type="hidden" name="entry.10" id="entry10">
+                        <input type="hidden" name="entry.11" id="entry11">
+
                         <div class="form-grid">
-                            <div class="form-group"><label class="form-label">Nama Lengkap</label><input type="text" class="form-input" id="nama" placeholder="Masukkan nama lengkap" required></div>
-                            <div class="form-group"><label class="form-label">Kelas</label><select class="form-select" id="kelas" required><option value="">Pilih Kelas</option><option value="X">X</option><option value="XI">XI</option><option value="XII">XII</option></select></div>
-                            <div class="form-group"><label class="form-label">Jurusan</label><select class="form-select" id="jurusan" required><option value="">Pilih Jurusan</option><option value="IPA">IPA</option><option value="IPS">IPS</option><option value="Bahasa">Bahasa</option></select></div>
-                            <div class="form-group"><label class="form-label">NISN</label><input type="text" class="form-input" id="absen" placeholder="Masukkan NISN" required></div>
-                            <div class="form-group"><label class="form-label">Nomor WhatsApp</label><input type="tel" class="form-input" id="whatsapp" placeholder="08xxxxxxxxxx" required></div>
-                            <div class="form-group"><label class="form-label">Tinggi Badan (cm)</label><input type="number" class="form-input" id="tinggi" placeholder="Contoh: 170" min="140" max="210" required></div>
-                            <div class="form-group"><label class="form-label">Berat Badan (kg)</label><input type="number" class="form-input" id="berat" placeholder="Contoh: 60" min="35" max="120" required></div>
-                            <div class="form-group"><label class="form-label">Pengalaman Turnamen</label><select class="form-select" id="pengalaman" required><option value="">Pilih</option><option value="Belum Pernah">Belum Pernah</option><option value="1-2 Kali">1-2 Kali</option><option value="3-5 Kali">3-5 Kali</option><option value="Lebih dari 5 Kali">Lebih dari 5 Kali</option></select></div>
-                            <div class="form-group full-width">
-                                <label class="form-label">Posisi Utama</label>
-                                <div class="position-selector" id="posisiUtamaSelector">
-                                    <div class="position-card" data-pos="Kiper"><span class="pos-icon">🧤</span><span class="pos-name">Kiper</span><span class="pos-desc">Penjaga Gawang</span></div>
-                                    <div class="position-card" data-pos="Anchor"><span class="pos-icon">🛡️</span><span class="pos-name">Anchor</span><span class="pos-desc">Bertahan</span></div>
-                                    <div class="position-card" data-pos="Flank"><span class="pos-icon">🏃</span><span class="pos-name">Flank</span><span class="pos-desc">Sayap</span></div>
-                                    <div class="position-card" data-pos="Pivot"><span class="pos-icon">🎯</span><span class="pos-name">Pivot</span><span class="pos-desc">Penyerang</span></div>
-                                </div>
-                                <input type="hidden" id="posisiUtama" required>
-                            </div>
-                            <div class="form-group full-width">
-                                <label class="form-label">Posisi Cadangan</label>
-                                <div class="position-selector" id="posisiCadanganSelector">
-                                    <div class="position-card" data-pos="Kiper"><span class="pos-icon">🧤</span><span class="pos-name">Kiper</span><span class="pos-desc">Penjaga Gawang</span></div>
-                                    <div class="position-card" data-pos="Anchor"><span class="pos-icon">🛡️</span><span class="pos-name">Anchor</span><span class="pos-desc">Bertahan</span></div>
-                                    <div class="position-card" data-pos="Flank"><span class="pos-icon">🏃</span><span class="pos-name">Flank</span><span class="pos-desc">Sayap</span></div>
-                                    <div class="position-card" data-pos="Pivot"><span class="pos-icon">🎯</span><span class="pos-name">Pivot</span><span class="pos-desc">Penyerang</span></div>
-                                </div>
-                                <input type="hidden" id="posisiCadangan" required>
-                            </div>
-                            <div class="form-group full-width"><label class="form-label">Riwayat Cedera</label><textarea class="form-textarea" id="cedera" placeholder="Ceritakan riwayat cedera yang pernah dialami (jika ada)..." rows="2"></textarea></div>
-                            <div class="form-group full-width"><label class="form-label">Alasan Bergabung</label><textarea class="form-textarea" id="alasan" placeholder="Kenapa kamu ingin bergabung dengan tim futsal?" rows="3" required></textarea></div>
-                        </div>
-                        <button type="submit" class="submit-btn" id="submitBtn">
-                            <span class="btn-text">🚀 Kirim Pendaftaran</span>
-                            <span class="spinner"><span class="spinner-circle"></span></span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="info-section">
-            <div class="section-header reveal"><span class="section-label">Alur Seleksi</span><h2 class="section-title">Timeline Kegiatan</h2><p class="section-desc">Catat tanggal pentingnya, jangan sampai terlewat!</p></div>
-            <div class="timeline reveal reveal-delay-2" id="timelineContainer">
-                <div class="timeline-progress" id="timelineProgress"></div>
-                <div class="timeline-item" data-step="0"><div class="timeline-dot"></div><div class="timeline-date">1 - 15 Juli</div><div class="timeline-title">Pendaftaran</div><div class="timeline-desc">Isi formulir online</div></div>
-                <div class="timeline-item" data-step="1"><div class="timeline-dot"></div><div class="timeline-date">18 Juli</div><div class="timeline-title">Seleksi Fisik</div><div class="timeline-desc">Tes ketahanan & agility</div></div>
-                <div class="timeline-item" data-step="2"><div class="timeline-dot"></div><div class="timeline-date">20 Juli</div><div class="timeline-title">Seleksi Teknik</div><div class="timeline-desc">Dribbling, passing, shooting</div></div>
-                <div class="timeline-item" data-step="3"><div class="timeline-dot"></div><div class="timeline-date">25 Juli</div><div class="timeline-title">Pengumuman</div><div class="timeline-desc">Tim resmi diumumkan</div></div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-header reveal"><span class="section-label">Statistik</span><h2 class="section-title">Antusiasme Pendaftar</h2><p class="section-desc">Data real-time dari calon pemain futsal SMAN 1 Rogojampi.</p></div>
-            <div class="stats-grid reveal reveal-delay-2">
-                <div class="stat-card"><div class="stat-icon">👤</div><div class="stat-number" id="counterPendaftar" data-target="127">0</div><div class="stat-label-text">Jumlah Pendaftar</div></div>
-                <div class="stat-card"><div class="stat-icon">⚽</div><div class="stat-number" id="counterPosisi" data-target="68">0</div><div class="stat-label-text">Pivot Terfavorit</div></div>
-                <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-number" id="counterTurnamen" data-target="43">0</div><div class="stat-label-text">Berpengalaman Turnamen</div></div>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <p>© 2025 <span class="accent">SMAN 1 Rogojampi</span> • Seleksi Tim Futsal • Event <span class="accent">AXIS</span></p>
-            <p style="margin-top:4px;">#GarudaMudaRogojampi #AXISEvent</p>
-        </footer>
-    </div>
-
-    <script>
-        (function() {
-            const navbar = document.getElementById('navbar');
-            const floatingCards = document.querySelectorAll('.floating-card');
-            const form = document.getElementById('registrationForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const successOverlay = document.getElementById('successOverlay');
-            const timelineContainer = document.getElementById('timelineContainer');
-            const timelineProgress = document.getElementById('timelineProgress');
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const revealElements = document.querySelectorAll('.reveal');
-            const counterPendaftar = document.getElementById('counterPendaftar');
-            const counterPosisi = document.getElementById('counterPosisi');
-            const counterTurnamen = document.getElementById('counterTurnamen');
-            const posisiUtamaSelector = document.getElementById('posisiUtamaSelector');
-            const posisiCadanganSelector = document.getElementById('posisiCadanganSelector');
-            const posisiUtamaInput = document.getElementById('posisiUtama');
-            const posisiCadanganInput = document.getElementById('posisiCadangan');
-            const particlesCanvas = document.getElementById('particles-canvas');
-
-            // GANTI DENGAN URL APPS SCRIPT KAMU
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAfFlTLLG3FinsucHsU8oCDnG3kPni_h0XoRmUGz6vqwm04X_6-wtkoQ307uyT_Lt4vQ/exec';
-
-            function handleNavScroll() {
-                if (window.scrollY > 50) navbar.classList.add('scrolled');
-                else navbar.classList.remove('scrolled');
-            }
-            window.addEventListener('scroll', handleNavScroll, { passive: true });
-            handleNavScroll();
-
-            function handleParallax(e) {
-                const mouseX = e.clientX, mouseY = e.clientY;
-                const centerX = window.innerWidth / 2, centerY = window.innerHeight / 2;
-                const deltaX = (mouseX - centerX) / centerX, deltaY = (mouseY - centerY) / centerY;
-                floatingCards.forEach(card => {
-                    const speed = parseFloat(card.getAttribute('data-speed')) || 0.04;
-                    card.style.transform = `translate(${deltaX * speed * 80}px, ${deltaY * speed * 60}px)`;
-                });
-            }
-            document.addEventListener('mousemove', handleParallax, { passive: true });
-
-            const ctx = particlesCanvas.getContext('2d');
-            let particles = [];
-            const particleCount = 50;
-            function resizeCanvas() {
-                particlesCanvas.width = window.innerWidth;
-                particlesCanvas.height = window.innerHeight;
-            }
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            class Particle {
-                constructor() { this.reset(); }
-                reset() {
-                    this.x = Math.random() * particlesCanvas.width;
-                    this.y = Math.random() * particlesCanvas.height;
-                    this.size = Math.random() * 2 + 0.8;
-                    this.speedX = (Math.random() - 0.5) * 0.5;
-                    this.speedY = (Math.random() - 0.5) * 0.5;
-                    this.opacity = Math.random() * 0.4 + 0.1;
-                    this.pulseSpeed = Math.random() * 0.02 + 0.005;
-                    this.pulseOffset = Math.random() * Math.PI * 2;
-                }
-                update(time) {
-                    this.x += this.speedX; this.y += this.speedY;
-                    if (this.x < 0 || this.x > particlesCanvas.width) this.speedX *= -1;
-                    if (this.y < 0 || this.y > particlesCanvas.height) this.speedY *= -1;
-                    this.currentOpacity = this.opacity + Math.sin(time * this.pulseSpeed + this.pulseOffset) * 0.15;
-                    this.currentOpacity = Math.max(0.03, Math.min(0.6, this.currentOpacity));
-                }
-                draw(ctx) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(163,230,53,${this.currentOpacity})`;
-                    ctx.fill();
-                }
-            }
-            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-            function animateParticles(timestamp) {
-                ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-                particles.forEach(p => { p.update(timestamp); p.draw(ctx); });
-                requestAnimationFrame(animateParticles);
-            }
-            requestAnimationFrame(animateParticles);
-
-            function setupPositionSelector(container, hiddenInput) {
-                const cards = container.querySelectorAll('.position-card');
-                cards.forEach(card => {
-                    card.addEventListener('click', () => {
-                        cards.forEach(c => c.classList.remove('selected'));
-                        card.classList.add('selected');
-                        hiddenInput.value = card.getAttribute('data-pos');
-                        hiddenInput.dispatchEvent(new Event('change'));
-                    });
-                });
-            }
-            setupPositionSelector(posisiUtamaSelector, posisiUtamaInput);
-            setupPositionSelector(posisiCadanganSelector, posisiCadanganInput);
-
-            // ==================== PENGIRIMAN DATA DENGAN RESPONS ====================
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                if (!posisiUtamaInput.value) { alert('Pilih Posisi Utama dulu ya.'); return; }
-                if (!posisiCadanganInput.value) { alert('Pilih Posisi Cadangan dulu ya.'); return; }
-                if (!form.checkValidity()) { form.reportValidity(); return; }
-
-                const formData = {
-                    nama: document.getElementById('nama').value.trim(),
-                    kelas: document.getElementById('kelas').value,
-                    jurusan: document.getElementById('jurusan').value,
-                    absen: document.getElementById('absen').value.trim(),
-                    whatsapp: document.getElementById('whatsapp').value.trim(),
-                    posisiUtama: posisiUtamaInput.value,
-                    posisiCadangan: posisiCadanganInput.value,
-                    tinggi: document.getElementById('tinggi').value,
-                    berat: document.getElementById('berat').value,
-                    pengalaman: document.getElementById('pengalaman').value,
-                    cedera: document.getElementById('cedera').value.trim() || '-',
-                    alasan: document.getElementById('alasan').value.trim(),
-                    timestamp: new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }),
-                };
-
-                submitBtn.classList.add('loading');
-                submitBtn.disabled = true;
-
-                try {
-                    const response = await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: new URLSearchParams(formData).toString(),
-                    });
-                    const result = await response.json();
-                    if (result.result === 'success') {
-                        showSuccess();
-                        form.reset();
-                        posisiUtamaSelector.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
-                        posisiCadanganSelector.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
-                        posisiUtamaInput.value = '';
-                        posisiCadanganInput.value = '';
-                    } else {
-                        alert('Gagal menyimpan: ' + (result.message || 'Coba lagi'));
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Gagal terhubung ke server. Periksa koneksi atau coba lagi nanti.');
-                } finally {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                }
-            });
-
-            function showSuccess() {
-                successOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-            window.closeSuccess = function() {
-                successOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-            successOverlay.addEventListener('click', function(e) {
-                if (e.target === successOverlay) closeSuccess();
-            });
-
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
-                });
-            }, { rootMargin: '0px 0px -60px 0px', threshold: 0.15 });
-            revealElements.forEach(el => revealObserver.observe(el));
-
-            const timelineObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => { timelineProgress.style.width = '92%'; }, 300);
-                        timelineItems.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.classList.add('active');
-                                if (index < timelineItems.length - 1) item.classList.add('completed');
-                            }, index * 350);
-                        });
-                        timelineObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.4 });
-            if (timelineContainer) timelineObserver.observe(timelineContainer);
-
-            function animateCounter(element, target, duration = 1800) {
-                const start = 0, startTime = performance.now();
-                function update(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    element.textContent = Math.round(start + (target - start) * eased);
-                    if (progress < 1) requestAnimationFrame(update);
-                    else element.textContent = target;
-                }
-                requestAnimationFrame(update);
-            }
-            const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounter(counterPendaftar, parseInt(counterPendaftar.getAttribute('data-target')) || 127);
-                        animateCounter(counterPosisi, parseInt(counterPosisi.getAttribute('data-target')) || 68);
-                        animateCounter(counterTurnamen, parseInt(counterTurnamen.getAttribute('data-target')) || 43);
-                        counterObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            const statsGrid = document.querySelector('.stats-grid');
-            if (statsGrid) counterObserver.observe(statsGrid);
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const targetEl = document.querySelector(targetId);
-                    if (targetEl) { e.preventDefault(); targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-                });
-            });
-
-            setTimeout(() => {
-                const heroLeft = document.querySelector('.hero-left');
-                if (heroLeft) heroLeft.classList.add('visible');
-            }, 200);
-
-            console.log('⚽ Seleksi Tim Futsal SMAN 1 Rogojampi - Siap!');
-            console.log('📋 Data dikirim ke:', GOOGLE_SCRIPT_URL);
-        })();
-    </script>
-</body>
-</html>
+                            <div class="form-group"><label
