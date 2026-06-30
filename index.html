@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleksi Tim Futsal SMAN 1 Rogojampi | AXIS Event</title>
     <style>
-        /* ========== SEMUA STYLE CSS TIDAK BERUBAH ========== */
         :root {
             --bg-dark: #111111;
             --bg-card: #1b1b1b;
-            --bg-card-hover: #222222;
             --bg-input: #1a1a1a;
             --accent: #a3e635;
             --accent-glow: #84cc16;
@@ -19,775 +17,343 @@
             --text-secondary: #b0b0b0;
             --text-muted: #777777;
             --border-subtle: #2a2a2a;
-            --border-accent: rgba(163, 230, 53, 0.5);
             --radius-sm: 12px;
             --radius-md: 20px;
-            --radius-lg: 28px;
             --radius-xl: 32px;
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
-            --shadow-glow: 0 0 40px rgba(163, 230, 53, 0.2);
-            --shadow-glow-strong: 0 0 60px rgba(163, 230, 53, 0.35);
-            --font-display: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --shadow-card: 0 4px 24px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 40px rgba(163,230,53,0.2);
+            --shadow-glow-strong: 0 0 60px rgba(163,230,53,0.35);
+            --font-display: 'Segoe UI', system-ui, sans-serif;
+            --font-body: 'Segoe UI', system-ui, sans-serif;
+            --transition-smooth: 0.35s ease;
+            --transition-bounce: 0.4s cubic-bezier(0.34,1.56,0.64,1);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; font-size:16px; }
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
+            background:var(--bg-dark); color:var(--text-primary);
+            font-family:var(--font-body); line-height:1.6;
+            overflow-x:hidden; -webkit-font-smoothing:antialiased; min-height:100vh;
         }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-glow); }
-
-        #particles-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 0;
-        }
-
-        .main-wrapper { position: relative; z-index: 1; }
+        ::-webkit-scrollbar { width:6px; }
+        ::-webkit-scrollbar-track { background:var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background:#333; border-radius:10px; }
+        ::-webkit-scrollbar-thumb:hover { background:var(--accent-glow); }
 
         .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 16px 24px; display: flex; align-items: center;
-            justify-content: space-between; transition: var(--transition-smooth);
-            background: transparent;
+            position:fixed; top:0; left:0; right:0; z-index:1000;
+            padding:16px 24px; display:flex; align-items:center;
+            justify-content:space-between; background:transparent; transition:var(--transition-smooth);
         }
         .nav.scrolled {
-            background: rgba(17, 17, 17, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+            background:rgba(17,17,17,0.85); backdrop-filter:blur(20px);
+            -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border-subtle);
         }
         .nav-logo {
-            display: flex; align-items: center; gap: 10px;
-            font-weight: 700; font-size: 1.1rem; letter-spacing: -0.3px;
-            color: var(--text-primary); text-decoration: none; cursor: pointer;
+            display:flex; align-items:center; gap:10px;
+            font-weight:700; font-size:1.1rem; color:var(--text-primary); text-decoration:none;
         }
         .nav-logo .logo-dot {
-            width: 10px; height: 10px; border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 14px var(--accent-glow);
-            animation: pulse-dot 2s infinite;
+            width:10px; height:10px; border-radius:50%;
+            background:var(--accent); box-shadow:0 0 14px var(--accent-glow);
+            animation:pulse-dot 2s infinite;
         }
         @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 14px var(--accent-glow); }
-            50% { box-shadow: 0 0 28px var(--accent-glow), 0 0 50px rgba(163, 230, 53, 0.5); }
+            0%,100% { box-shadow:0 0 14px var(--accent-glow); }
+            50% { box-shadow:0 0 28px var(--accent-glow),0 0 50px rgba(163,230,53,0.5); }
         }
         .nav-cta {
-            padding: 10px 20px; border-radius: 50px; background: var(--accent);
-            color: #111; font-weight: 700; font-size: 0.85rem; border: none;
-            cursor: pointer; letter-spacing: -0.2px; transition: var(--transition-smooth);
-            text-decoration: none;
+            padding:10px 20px; border-radius:50px; background:var(--accent);
+            color:#111; font-weight:700; font-size:0.85rem; border:none;
+            cursor:pointer; text-decoration:none;
         }
-        .nav-cta:hover { box-shadow: var(--shadow-glow-strong); transform: translateY(-2px); }
+        .nav-cta:hover { box-shadow:var(--shadow-glow-strong); transform:translateY(-2px); }
 
         .hero {
-            position: relative; min-height: 100vh; display: flex;
-            align-items: center; justify-content: center; padding: 100px 24px 60px;
-            overflow: hidden; z-index: 1;
-        }
-        .hero-bg-pattern {
-            position: absolute; inset: 0; z-index: 0; opacity: 0.04;
-            background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px),
-                repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px);
-        }
-        .hero-spotlight {
-            position: absolute; width: 600px; height: 600px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(163,230,53,0.12) 0%, transparent 70%);
-            top: -150px; right: -100px; z-index: 0; filter: blur(80px); pointer-events: none;
-        }
-        .hero-spotlight-2 {
-            position: absolute; width: 400px; height: 400px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(132,204,22,0.08) 0%, transparent 70%);
-            bottom: -80px; left: -60px; z-index: 0; filter: blur(70px); pointer-events: none;
+            min-height:100vh; display:flex; align-items:center;
+            justify-content:center; padding:100px 24px 60px;
         }
         .hero-container {
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 40px; max-width: 1200px; width: 100%; position: relative; z-index: 2;
+            display:flex; align-items:center; justify-content:space-between;
+            gap:40px; max-width:1200px; width:100%;
         }
-        .hero-left { flex: 1; max-width: 560px; }
+        .hero-left { flex:1; max-width:560px; }
         .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 8px 16px; border-radius: 50px; background: var(--accent-soft);
-            border: 1px solid var(--accent-medium); font-size: 0.8rem;
-            font-weight: 600; color: var(--accent); margin-bottom: 20px;
-            letter-spacing: 0.3px; text-transform: uppercase;
+            display:inline-flex; align-items:center; gap:8px;
+            padding:8px 16px; border-radius:50px; background:var(--accent-soft);
+            border:1px solid var(--accent-medium); font-size:0.8rem;
+            font-weight:600; color:var(--accent); margin-bottom:20px;
         }
-        .hero-badge .badge-icon { font-size: 1rem; }
         .hero-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800;
-            line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; color: #fff;
+            font-family:var(--font-display); font-size:clamp(2.2rem,5vw,3.6rem);
+            font-weight:800; line-height:1.1; margin-bottom:16px; color:#fff;
         }
-        .hero-title .highlight { color: var(--accent); }
-        .hero-subtitle {
-            font-size: 1.05rem; color: var(--text-secondary);
-            margin-bottom: 32px; line-height: 1.6; max-width: 460px;
-        }
-        .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+        .hero-title .highlight { color:var(--accent); }
+        .hero-subtitle { font-size:1.05rem; color:var(--text-secondary); margin-bottom:32px; }
+        .hero-buttons { display:flex; gap:14px; flex-wrap:wrap; }
         .btn-primary {
-            padding: 14px 28px; border-radius: 50px; background: var(--accent);
-            color: #111; font-weight: 700; font-size: 0.95rem; border: none;
-            cursor: pointer; letter-spacing: -0.2px; transition: var(--transition-smooth);
-            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 20px rgba(163,230,53,0.25);
+            padding:14px 28px; border-radius:50px; background:var(--accent);
+            color:#111; font-weight:700; font-size:0.95rem; border:none;
+            cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
         }
-        .btn-primary:hover { box-shadow: var(--shadow-glow-strong); transform: translateY(-3px); }
         .btn-secondary {
-            padding: 14px 28px; border-radius: 50px; background: transparent;
-            color: #fff; font-weight: 600; font-size: 0.95rem;
-            border: 1.5px solid var(--border-subtle); cursor: pointer;
-            letter-spacing: -0.2px; transition: var(--transition-smooth);
-            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-        }
-        .btn-secondary:hover {
-            border-color: var(--accent-medium); background: rgba(255,255,255,0.03);
-            box-shadow: 0 0 25px rgba(163,230,53,0.1);
+            padding:14px 28px; border-radius:50px; background:transparent;
+            color:#fff; font-weight:600; font-size:0.95rem;
+            border:1.5px solid var(--border-subtle); cursor:pointer; text-decoration:none;
         }
 
-        .hero-right { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; min-height: 400px; }
-        .floating-card {
-            position: absolute; background: rgba(27,27,27,0.8);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md);
-            padding: 18px 22px; box-shadow: var(--shadow-card);
-            transition: transform 0.1s ease-out; pointer-events: none; z-index: 3;
-        }
-        .floating-card.player-card { top: 10%; right: 5%; display: flex; align-items: center; gap: 14px; }
-        .floating-card.player-card .avatar {
-            width: 50px; height: 50px; border-radius: 50%;
-            background: linear-gradient(135deg, #a3e635, #65a30d);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: 700; color: #111;
-        }
-        .floating-card .card-info .card-name { font-weight: 700; font-size: 0.9rem; color: #fff; }
-        .floating-card .card-info .card-role { font-size: 0.75rem; color: var(--accent); font-weight: 600; }
-        .floating-card.stat-card { bottom: 18%; left: 0%; text-align: center; min-width: 100px; }
-        .floating-card.stat-card .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--accent); letter-spacing: -1px; }
-        .floating-card.stat-card .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .floating-card.ball-card {
-            top: 55%; right: 15%; width: 70px; height: 70px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 2rem;
-            padding: 0; background: rgba(27,27,27,0.7); backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); border: 1.5px solid rgba(255,255,255,0.1);
-            animation: float-ball 3s ease-in-out infinite;
-        }
-        @keyframes float-ball {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-18px); }
-        }
+        .section { padding:80px 24px; }
+        .section-header { text-align:center; margin-bottom:50px; }
+        .section-label { font-size:0.78rem; font-weight:700; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+        .section-title { font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:700; color:#fff; margin-bottom:10px; }
+        .section-desc { color:var(--text-secondary); }
 
-        .section { padding: 80px 24px; position: relative; z-index: 1; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-label {
-            display: inline-block; font-size: 0.78rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
-            margin-bottom: 8px;
-        }
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700;
-            letter-spacing: -0.5px; color: #fff; margin-bottom: 10px;
-        }
-        .section-desc { color: var(--text-secondary); font-size: 0.95rem; max-width: 500px; margin: 0 auto; }
-
-        .form-section { max-width: 750px; margin: 0 auto; }
+        .form-section { max-width:750px; margin:0 auto; }
         .form-card {
-            background: var(--bg-card); border-radius: var(--radius-xl);
-            padding: 36px 32px; border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card); position: relative; overflow: hidden;
+            background:var(--bg-card); border-radius:var(--radius-xl);
+            padding:36px 32px; border:1px solid var(--border-subtle); box-shadow:var(--shadow-card);
         }
-        .form-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0.6;
-        }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-        .form-group { display: flex; flex-direction: column; gap: 6px; }
-        .form-group.full-width { grid-column: 1 / -1; }
-        .form-label { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.2px; }
+        .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+        .form-group { display:flex; flex-direction:column; gap:6px; }
+        .form-group.full-width { grid-column:1/-1; }
+        .form-label { font-size:0.82rem; font-weight:600; color:var(--text-secondary); }
         .form-input, .form-select, .form-textarea {
-            background: var(--bg-input); border: 1.5px solid var(--border-subtle);
-            border-radius: var(--radius-sm); padding: 13px 16px; color: #fff;
-            font-size: 0.9rem; font-family: var(--font-body);
-            transition: var(--transition-smooth); outline: none; width: 100%; resize: vertical;
+            background:var(--bg-input); border:1.5px solid var(--border-subtle);
+            border-radius:var(--radius-sm); padding:13px 16px; color:#fff;
+            font-size:0.9rem; outline:none; width:100%; resize:vertical;
         }
         .form-input:focus, .form-select:focus, .form-textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 18px rgba(163,230,53,0.2), 0 0 0 3px rgba(163,230,53,0.05);
-            background: #1f1f1f;
+            border-color:var(--accent); box-shadow:0 0 18px rgba(163,230,53,0.2);
         }
-        .form-input::placeholder, .form-textarea::placeholder { color: #555; }
         .form-select {
-            appearance: none; -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a3e635' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: right 14px center;
-            padding-right: 40px; cursor: pointer;
+            appearance:none; padding-right:40px; cursor:pointer;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a3e635' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat:no-repeat; background-position:right 14px center;
         }
-        .form-textarea { min-height: 100px; }
+        .form-textarea { min-height:100px; }
 
-        .position-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 4px; }
+        .position-selector { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:4px; }
         .position-card {
-            background: var(--bg-input); border: 1.5px solid var(--border-subtle);
-            border-radius: var(--radius-md); padding: 16px 10px; text-align: center;
-            cursor: pointer; transition: var(--transition-bounce); user-select: none; position: relative;
+            background:var(--bg-input); border:1.5px solid var(--border-subtle);
+            border-radius:var(--radius-md); padding:16px 10px; text-align:center;
+            cursor:pointer; transition:var(--transition-bounce);
         }
-        .position-card:hover { border-color: var(--accent-medium); background: #1f1f1f; transform: scale(1.03); }
+        .position-card:hover { border-color:var(--accent-medium); transform:scale(1.03); }
         .position-card.selected {
-            border-color: var(--accent); background: var(--accent-soft);
-            box-shadow: 0 0 22px rgba(163,230,53,0.25); transform: scale(1.06);
+            border-color:var(--accent); background:var(--accent-soft);
+            box-shadow:0 0 22px rgba(163,230,53,0.25); transform:scale(1.06);
         }
-        .position-card .pos-icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
-        .position-card .pos-name { font-weight: 700; font-size: 0.85rem; color: #fff; letter-spacing: -0.2px; }
-        .position-card .pos-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
-        .position-card.selected .pos-name { color: var(--accent); }
+        .position-card .pos-icon { font-size:1.8rem; display:block; margin-bottom:6px; }
+        .position-card .pos-name { font-weight:700; font-size:0.85rem; color:#fff; }
+        .position-card.selected .pos-name { color:var(--accent); }
 
         .submit-btn {
-            width: 100%; padding: 16px; border-radius: 50px; background: var(--accent);
-            color: #111; font-weight: 700; font-size: 1rem; border: none;
-            cursor: pointer; letter-spacing: -0.2px; transition: var(--transition-smooth);
-            margin-top: 20px; position: relative; overflow: hidden;
-            box-shadow: 0 4px 20px rgba(163,230,53,0.25);
+            width:100%; padding:16px; border-radius:50px; background:var(--accent);
+            color:#111; font-weight:700; font-size:1rem; border:none;
+            cursor:pointer; margin-top:20px;
         }
-        .submit-btn:hover { box-shadow: var(--shadow-glow-strong); transform: translateY(-2px); }
-        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
-        .submit-btn .btn-text { transition: opacity 0.2s; }
-        .submit-btn.loading .btn-text { opacity: 0; }
-        .submit-btn .spinner {
-            display: none; position: absolute; inset: 0;
-            align-items: center; justify-content: center;
-        }
-        .submit-btn.loading .spinner { display: flex; }
-        .spinner-circle {
-            width: 24px; height: 24px; border-radius: 50%;
-            border: 3px solid rgba(17,17,17,0.3); border-top-color: #111;
-            animation: spin 0.7s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .submit-btn:disabled { opacity:0.6; cursor:not-allowed; }
 
         .success-overlay {
-            display: none; position: fixed; inset: 0; z-index: 2000;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); align-items: center; justify-content: center;
+            display:none; position:fixed; inset:0; z-index:2000;
+            background:rgba(0,0,0,0.85); align-items:center; justify-content:center;
         }
-        .success-overlay.active { display: flex; }
+        .success-overlay.active { display:flex; }
         .success-card {
-            background: var(--bg-card); border-radius: var(--radius-xl);
-            padding: 40px 30px; text-align: center; border: 1px solid var(--accent-medium);
-            box-shadow: var(--shadow-glow); max-width: 400px; width: 90%;
-            animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1);
-        }
-        @keyframes pop-in {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            background:var(--bg-card); border-radius:var(--radius-xl);
+            padding:40px 30px; text-align:center;
         }
         .success-check {
-            width: 70px; height: 70px; border-radius: 50%; background: var(--accent);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 2rem; color: #111;
-            animation: check-bounce 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+            width:70px; height:70px; border-radius:50%; background:var(--accent);
+            display:flex; align-items:center; justify-content:center;
+            margin:0 auto 20px; font-size:2rem; color:#111;
         }
-        @keyframes check-bounce {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
-        }
-        .success-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
-        .success-msg { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; }
+        .success-title { font-size:1.4rem; font-weight:700; color:#fff; margin-bottom:6px; }
+        .success-msg { color:var(--text-secondary); margin-bottom:20px; }
         .success-close {
-            padding: 10px 24px; border-radius: 50px; background: transparent;
-            color: #fff; border: 1.5px solid var(--border-subtle);
-            cursor: pointer; font-weight: 600; transition: var(--transition-smooth);
+            padding:10px 24px; border-radius:50px; background:transparent;
+            color:#fff; border:1px solid var(--border-subtle); cursor:pointer;
         }
-        .success-close:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(163,230,53,0.15); }
-
-        .timeline {
-            display: flex; align-items: flex-start; justify-content: center;
-            gap: 0; max-width: 900px; margin: 0 auto; position: relative; flex-wrap: wrap;
-        }
-        .timeline::before {
-            content: ''; position: absolute; top: 36px; left: 8%; right: 8%;
-            height: 3px; background: var(--border-subtle); border-radius: 10px; z-index: 0;
-        }
-        .timeline-progress {
-            position: absolute; top: 36px; left: 8%; height: 3px;
-            background: var(--accent); border-radius: 10px; z-index: 1;
-            transition: width 1.5s ease; width: 0%; box-shadow: 0 0 12px var(--accent-glow);
-        }
-        .timeline-item { flex: 1; min-width: 120px; text-align: center; position: relative; z-index: 2; padding: 0 10px; }
-        .timeline-dot {
-            width: 24px; height: 24px; border-radius: 50%; background: var(--bg-card);
-            border: 3px solid var(--border-subtle); margin: 0 auto 14px;
-            position: relative; z-index: 3; transition: var(--transition-smooth);
-        }
-        .timeline-item.active .timeline-dot {
-            border-color: var(--accent); background: var(--accent);
-            box-shadow: 0 0 20px rgba(163,230,53,0.5);
-        }
-        .timeline-item.completed .timeline-dot { border-color: var(--accent); background: var(--accent); }
-        .timeline-date { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
-        .timeline-title { font-weight: 700; font-size: 0.9rem; color: #fff; }
-        .timeline-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
-
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 700px; margin: 0 auto; }
-        .stat-card {
-            background: var(--bg-card); border-radius: var(--radius-lg);
-            padding: 28px 20px; text-align: center; border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card); transition: var(--transition-smooth);
-        }
-        .stat-card:hover { border-color: var(--accent-medium); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
-        .stat-icon { font-size: 2rem; margin-bottom: 10px; }
-        .stat-number { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; color: var(--accent); }
-        .stat-label-text { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
 
         .footer {
-            text-align: center; padding: 30px 24px; color: var(--text-muted);
-            font-size: 0.8rem; border-top: 1px solid var(--border-subtle);
-            position: relative; z-index: 1;
-        }
-        .footer .accent { color: var(--accent); font-weight: 600; }
-
-        .reveal {
-            opacity: 0; transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-
-        @media (max-width: 1024px) {
-            .hero-container { flex-direction: column; text-align: center; }
-            .hero-left { max-width: 100%; }
-            .hero-subtitle { max-width: 100%; }
-            .hero-buttons { justify-content: center; }
-            .hero-right { min-height: 300px; width: 100%; max-width: 450px; }
-            .floating-card.player-card { top: 5%; right: 10%; }
-            .floating-card.stat-card { bottom: 10%; left: 5%; }
-            .floating-card.ball-card { top: 50%; right: 5%; width: 55px; height: 55px; font-size: 1.5rem; }
-            .position-selector { grid-template-columns: repeat(2, 1fr); }
-            .form-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-            .stat-number { font-size: 1.8rem; }
-            .timeline::before { left: 4%; right: 4%; }
-            .timeline-progress { left: 4%; }
+            text-align:center; padding:30px 24px; color:var(--text-muted);
+            border-top:1px solid var(--border-subtle);
         }
 
-        @media (max-width: 640px) {
-            .hero { padding: 80px 16px 40px; min-height: auto; }
-            .hero-title { font-size: 1.8rem; }
-            .hero-subtitle { font-size: 0.9rem; }
-            .hero-right { min-height: 220px; max-width: 100%; }
-            .floating-card { padding: 12px 14px; border-radius: var(--radius-sm); }
-            .floating-card.player-card { top: 0; right: 2%; gap: 8px; }
-            .floating-card.player-card .avatar { width: 36px; height: 36px; font-size: 1rem; }
-            .floating-card .card-info .card-name { font-size: 0.75rem; }
-            .floating-card.stat-card { bottom: 5%; left: 2%; min-width: 70px; padding: 10px 14px; }
-            .floating-card.stat-card .stat-value { font-size: 1.3rem; }
-            .floating-card.ball-card { top: 45%; right: 8%; width: 44px; height: 44px; font-size: 1.2rem; }
-            .position-selector { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .position-card { padding: 12px 8px; }
-            .position-card .pos-icon { font-size: 1.4rem; }
-            .position-card .pos-name { font-size: 0.75rem; }
-            .stats-grid { grid-template-columns: 1fr; gap: 10px; }
-            .form-card { padding: 24px 16px; border-radius: var(--radius-lg); }
-            .timeline { flex-direction: column; align-items: stretch; gap: 16px; }
-            .timeline::before { display: none; }
-            .timeline-progress { display: none; }
-            .timeline-item { display: flex; align-items: center; gap: 14px; text-align: left; padding: 0; }
-            .timeline-dot { margin: 0; flex-shrink: 0; }
-            .btn-primary, .btn-secondary { padding: 12px 20px; font-size: 0.85rem; }
-            .nav { padding: 10px 14px; }
-            .nav-logo { font-size: 0.9rem; }
-            .nav-cta { padding: 8px 14px; font-size: 0.75rem; }
+        @media (max-width:1024px) {
+            .hero-container { flex-direction:column; text-align:center; }
+            .position-selector { grid-template-columns:repeat(2,1fr); }
+            .form-grid { grid-template-columns:1fr; }
+        }
+        @media (max-width:640px) {
+            .hero { padding:80px 16px 40px; min-height:auto; }
+            .hero-title { font-size:1.8rem; }
+            .form-card { padding:24px 16px; }
         }
     </style>
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
 
-    <!-- SUCCESS OVERLAY -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div class="success-check">✓</div>
             <div class="success-title">Pendaftaran Berhasil!</div>
-            <div class="success-msg">Data kamu telah terkirim ke Google Form. Tunggu info selanjutnya ya, calon bintang futsal! ⚽</div>
+            <div class="success-msg">Data kamu telah masuk ke Google Form. Tunggu info selanjutnya ya! ⚽</div>
             <button class="success-close" onclick="closeSuccess()">Tutup</button>
         </div>
     </div>
 
-    <!-- MAIN WRAPPER -->
-    <div class="main-wrapper">
-        <!-- NAVIGATION -->
-        <nav class="nav" id="navbar">
-            <a href="#" class="nav-logo">
-                <span class="logo-dot"></span> SMANSA ROGOJAMPI
-            </a>
-            <a href="#form-section" class="nav-cta">Daftar Sekarang</a>
-        </nav>
+    <nav class="nav" id="navbar">
+        <a href="#" class="nav-logo"><span class="logo-dot"></span> SMANSA ROGOJAMPI</a>
+        <a href="#form-section" class="nav-cta">Daftar Sekarang</a>
+    </nav>
 
-        <!-- HERO SECTION -->
-        <section class="hero" id="hero">
-            <div class="hero-bg-pattern"></div>
-            <div class="hero-spotlight"></div>
-            <div class="hero-spotlight-2"></div>
-            <div class="hero-container">
-                <div class="hero-left reveal">
-                    <div class="hero-badge"><span class="badge-icon">⚽</span> AXIS Event 2025</div>
-                    <h1 class="hero-title">Seleksi Tim Futsal<br><span class="highlight">SMAN 1 Rogojampi</span></h1>
-                    <p class="hero-subtitle">Kesempatan menjadi bagian dari tim yang akan mewakili sekolah pada <strong>Event AXIS</strong>. Tunjukkan skill terbaikmu dan jadilah bintang lapangan!</p>
-                    <div class="hero-buttons">
-                        <a href="#form-section" class="btn-primary">⚡ Daftar Sekarang</a>
-                        <a href="#info-section" class="btn-secondary">📋 Lihat Informasi</a>
-                    </div>
-                </div>
-                <div class="hero-right" id="heroRight">
-                    <div class="floating-card player-card" data-speed="0.04">
-                        <div class="avatar">R</div>
-                        <div class="card-info">
-                            <div class="card-name">Rizky Ardiansyah</div>
-                            <div class="card-role">Pivot • Tim 2024</div>
-                        </div>
-                    </div>
-                    <div class="floating-card stat-card" data-speed="0.03">
-                        <div class="stat-value">127</div>
-                        <div class="stat-label">Pendaftar</div>
-                    </div>
-                    <div class="floating-card ball-card" data-speed="0.06">⚽</div>
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-badge">⚽ AXIS Event 2025</div>
+                <h1 class="hero-title">Seleksi Tim Futsal<br><span class="highlight">SMAN 1 Rogojampi</span></h1>
+                <p class="hero-subtitle">Kesempatan menjadi bagian dari tim yang akan mewakili sekolah pada <strong>Event AXIS</strong>.</p>
+                <div class="hero-buttons">
+                    <a href="#form-section" class="btn-primary">⚡ Daftar Sekarang</a>
+                    <a href="#info-section" class="btn-secondary">📋 Lihat Informasi</a>
                 </div>
             </div>
-        </section>
+            <div style="font-size:6rem;">⚽</div>
+        </div>
+    </section>
 
-        <!-- FORM SECTION -->
-        <section class="section" id="form-section">
-            <div class="section-header reveal">
-                <span class="section-label">Formulir Pendaftaran</span>
-                <h2 class="section-title">Daftarkan Dirimu</h2>
-                <p class="section-desc">Isi data dengan lengkap untuk mengikuti seleksi tim futsal.</p>
-            </div>
-            <div class="form-section reveal reveal-delay-1">
-                <div class="form-card">
-                    <!-- ============================================ -->
-                    <!-- FORM TERHUBUNG KE GOOGLE FORM KAMU -->
-                    <!-- ============================================ -->
-                    <form id="registrationForm" action="https://docs.google.com/forms/d/e/1FAIpQLScmXMaHqH4XJDhGrgt7kq_TUlYOCJ6NWwW4HPZYfFa7wUm_eQ/formResponse" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit()">
-                        <iframe name="hidden_iframe" style="display:none;"></iframe>
-                        
-                        <!-- Hidden inputs untuk Google Form -->
-                        <input type="hidden" name="entry.0" id="entry0">
-                        <input type="hidden" name="entry.1" id="entry1">
-                        <input type="hidden" name="entry.2" id="entry2">
-                        <input type="hidden" name="entry.3" id="entry3">
-                        <input type="hidden" name="entry.4" id="entry4">
-                        <input type="hidden" name="entry.5" id="entry5">
-                        <input type="hidden" name="entry.6" id="entry6">
-                        <input type="hidden" name="entry.7" id="entry7">
-                        <input type="hidden" name="entry.8" id="entry8">
-                        <input type="hidden" name="entry.9" id="entry9">
-                        <input type="hidden" name="entry.10" id="entry10">
-                        <input type="hidden" name="entry.11" id="entry11">
+    <section class="section" id="form-section">
+        <div class="section-header">
+            <div class="section-label">Formulir Pendaftaran</div>
+            <h2 class="section-title">Daftarkan Dirimu</h2>
+            <p class="section-desc">Isi data dengan lengkap ya!</p>
+        </div>
+        <div class="form-section">
+            <div class="form-card">
+                <!-- FORM ACTION KE GOOGLE FORM KAMU -->
+                <form id="registrationForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScmXMaHqH4XJDhGrgt7kq_TUlYOCJ6NWwW4HPZYfFa7wUm_eQ/formResponse" method="POST" target="hidden_iframe" onsubmit="handleSubmit()">
+                    <iframe name="hidden_iframe" style="display:none;"></iframe>
+                    
+                    <!-- HIDDEN INPUTS DENGAN ENTRY IDs YANG BENAR -->
+                    <input type="hidden" name="entry.1240796371" id="eNama">
+                    <input type="hidden" name="entry.606472969" id="eKelas">
+                    <input type="hidden" name="entry.1786519654" id="eJurusan">
+                    <input type="hidden" name="entry.1888571597" id="eNISN">
+                    <input type="hidden" name="entry.2016496920" id="eWA">
+                    <input type="hidden" name="entry.1247279785" id="ePosisiUtama">
+                    <input type="hidden" name="entry.1868187721" id="ePosisiCadangan">
+                    <input type="hidden" name="entry.355787251" id="eTinggi">
+                    <input type="hidden" name="entry.1791156374" id="eBerat">
+                    <input type="hidden" name="entry.522421703" id="ePengalaman">
+                    <input type="hidden" name="entry.1517211314" id="eCedera">
+                    <input type="hidden" name="entry.399208557" id="eAlasan">
 
-                        <div class="form-grid">
-                            <div class="form-group"><label class="form-label">Nama Lengkap</label><input type="text" class="form-input" id="nama" placeholder="Masukkan nama lengkap" required></div>
-                            <div class="form-group"><label class="form-label">Kelas</label><select class="form-select" id="kelas" required><option value="">Pilih Kelas</option><option value="X">X</option><option value="XI">XI</option><option value="XII">XII</option></select></div>
-                            <div class="form-group"><label class="form-label">Jurusan</label><select class="form-select" id="jurusan" required><option value="">Pilih Jurusan</option><option value="IPA">IPA</option><option value="IPS">IPS</option><option value="Bahasa">Bahasa</option></select></div>
-                            <div class="form-group"><label class="form-label">NISN</label><input type="text" class="form-input" id="absen" placeholder="Masukkan NISN" required></div>
-                            <div class="form-group"><label class="form-label">Nomor WhatsApp</label><input type="tel" class="form-input" id="whatsapp" placeholder="08xxxxxxxxxx" required></div>
-                            <div class="form-group"><label class="form-label">Tinggi Badan (cm)</label><input type="number" class="form-input" id="tinggi" placeholder="Contoh: 170" min="140" max="210" required></div>
-                            <div class="form-group"><label class="form-label">Berat Badan (kg)</label><input type="number" class="form-input" id="berat" placeholder="Contoh: 60" min="35" max="120" required></div>
-                            <div class="form-group"><label class="form-label">Pengalaman Turnamen</label><select class="form-select" id="pengalaman" required><option value="">Pilih</option><option value="Belum Pernah">Belum Pernah</option><option value="1-2 Kali">1-2 Kali</option><option value="3-5 Kali">3-5 Kali</option><option value="Lebih dari 5 Kali">Lebih dari 5 Kali</option></select></div>
-                            <div class="form-group full-width">
-                                <label class="form-label">Posisi Utama</label>
-                                <div class="position-selector" id="posisiUtamaSelector">
-                                    <div class="position-card" data-pos="Kiper"><span class="pos-icon">🧤</span><span class="pos-name">Kiper</span><span class="pos-desc">Penjaga Gawang</span></div>
-                                    <div class="position-card" data-pos="Anchor"><span class="pos-icon">🛡️</span><span class="pos-name">Anchor</span><span class="pos-desc">Bertahan</span></div>
-                                    <div class="position-card" data-pos="Flank"><span class="pos-icon">🏃</span><span class="pos-name">Flank</span><span class="pos-desc">Sayap</span></div>
-                                    <div class="position-card" data-pos="Pivot"><span class="pos-icon">🎯</span><span class="pos-name">Pivot</span><span class="pos-desc">Penyerang</span></div>
-                                </div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Nama Lengkap</label><input type="text" class="form-input" id="nama" placeholder="Nama lengkap" required></div>
+                        <div class="form-group"><label class="form-label">Kelas</label><select class="form-select" id="kelas" required><option value="">Pilih</option><option value="X">X</option><option value="XI">XI</option><option value="XII">XII</option></select></div>
+                        <div class="form-group"><label class="form-label">Jurusan</label><select class="form-select" id="jurusan" required><option value="">Pilih</option><option value="IPA">IPA</option><option value="IPS">IPS</option><option value="Bahasa">Bahasa</option></select></div>
+                        <div class="form-group"><label class="form-label">NISN</label><input type="text" class="form-input" id="nisn" required></div>
+                        <div class="form-group"><label class="form-label">WhatsApp</label><input type="tel" class="form-input" id="wa" required></div>
+                        <div class="form-group"><label class="form-label">Tinggi (cm)</label><input type="number" class="form-input" id="tinggi" required></div>
+                        <div class="form-group"><label class="form-label">Berat (kg)</label><input type="number" class="form-input" id="berat" required></div>
+                        <div class="form-group"><label class="form-label">Pengalaman</label><select class="form-select" id="pengalaman" required><option value="">Pilih</option><option value="Belum pernah">Belum pernah</option><option value="1-2 kali">1-2 kali</option><option value="3-5 kali">3-5 kali</option><option value="Lebih dari 5 kali">Lebih dari 5 kali</option><option value="Pernah juara">Pernah juara</option></select></div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Posisi Utama</label>
+                            <div class="position-selector" id="posisiUtamaSelector">
+                                <div class="position-card" data-pos="Kiper"><span class="pos-icon">🧤</span><span class="pos-name">Kiper</span></div>
+                                <div class="position-card" data-pos="Anchor"><span class="pos-icon">🛡️</span><span class="pos-name">Anchor</span></div>
+                                <div class="position-card" data-pos="Flank"><span class="pos-icon">🏃</span><span class="pos-name">Flank</span></div>
+                                <div class="position-card" data-pos="Pivot"><span class="pos-icon">🎯</span><span class="pos-name">Pivot</span></div>
                             </div>
-                            <div class="form-group full-width">
-                                <label class="form-label">Posisi Cadangan</label>
-                                <div class="position-selector" id="posisiCadanganSelector">
-                                    <div class="position-card" data-pos="Kiper"><span class="pos-icon">🧤</span><span class="pos-name">Kiper</span><span class="pos-desc">Penjaga Gawang</span></div>
-                                    <div class="position-card" data-pos="Anchor"><span class="pos-icon">🛡️</span><span class="pos-name">Anchor</span><span class="pos-desc">Bertahan</span></div>
-                                    <div class="position-card" data-pos="Flank"><span class="pos-icon">🏃</span><span class="pos-name">Flank</span><span class="pos-desc">Sayap</span></div>
-                                    <div class="position-card" data-pos="Pivot"><span class="pos-icon">🎯</span><span class="pos-name">Pivot</span><span class="pos-desc">Penyerang</span></div>
-                                </div>
-                            </div>
-                            <div class="form-group full-width"><label class="form-label">Riwayat Cedera</label><textarea class="form-textarea" id="cedera" placeholder="Ceritakan riwayat cedera yang pernah dialami (jika ada)..." rows="2"></textarea></div>
-                            <div class="form-group full-width"><label class="form-label">Alasan Bergabung</label><textarea class="form-textarea" id="alasan" placeholder="Kenapa kamu ingin bergabung dengan tim futsal?" rows="3" required></textarea></div>
                         </div>
-                        <button type="submit" class="submit-btn" id="submitBtn">
-                            <span class="btn-text">🚀 Kirim Pendaftaran</span>
-                            <span class="spinner"><span class="spinner-circle"></span></span>
-                        </button>
-                    </form>
-                </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Posisi Cadangan</label>
+                            <div class="position-selector" id="posisiCadanganSelector">
+                                <div class="position-card" data-pos="Kiper"><span class="pos-icon">🧤</span><span class="pos-name">Kiper</span></div>
+                                <div class="position-card" data-pos="Anchor"><span class="pos-icon">🛡️</span><span class="pos-name">Anchor</span></div>
+                                <div class="position-card" data-pos="Flank"><span class="pos-icon">🏃</span><span class="pos-name">Flank</span></div>
+                                <div class="position-card" data-pos="Pivot"><span class="pos-icon">🎯</span><span class="pos-name">Pivot</span></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width"><label class="form-label">Riwayat Cedera</label><textarea class="form-textarea" id="cedera" rows="2"></textarea></div>
+                        <div class="form-group full-width"><label class="form-label">Alasan Bergabung</label><textarea class="form-textarea" id="alasan" rows="3" required></textarea></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">🚀 Kirim Pendaftaran</button>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- TIMELINE SECTION -->
-        <section class="section" id="info-section">
-            <div class="section-header reveal"><span class="section-label">Alur Seleksi</span><h2 class="section-title">Timeline Kegiatan</h2><p class="section-desc">Catat tanggal pentingnya, jangan sampai terlewat!</p></div>
-            <div class="timeline reveal reveal-delay-2" id="timelineContainer">
-                <div class="timeline-progress" id="timelineProgress"></div>
-                <div class="timeline-item" data-step="0"><div class="timeline-dot"></div><div class="timeline-date">1 - 15 Juli</div><div class="timeline-title">Pendaftaran</div><div class="timeline-desc">Isi formulir online</div></div>
-                <div class="timeline-item" data-step="1"><div class="timeline-dot"></div><div class="timeline-date">18 Juli</div><div class="timeline-title">Seleksi Fisik</div><div class="timeline-desc">Tes ketahanan & agility</div></div>
-                <div class="timeline-item" data-step="2"><div class="timeline-dot"></div><div class="timeline-date">20 Juli</div><div class="timeline-title">Seleksi Teknik</div><div class="timeline-desc">Dribbling, passing, shooting</div></div>
-                <div class="timeline-item" data-step="3"><div class="timeline-dot"></div><div class="timeline-date">25 Juli</div><div class="timeline-title">Pengumuman</div><div class="timeline-desc">Tim resmi diumumkan</div></div>
-            </div>
-        </section>
+    <footer class="footer">
+        <p>© 2025 SMAN 1 Rogojampi • AXIS Event</p>
+    </footer>
 
-        <!-- STATISTIC SECTION -->
-        <section class="section">
-            <div class="section-header reveal"><span class="section-label">Statistik</span><h2 class="section-title">Antusiasme Pendaftar</h2><p class="section-desc">Data real-time dari calon pemain futsal SMAN 1 Rogojampi.</p></div>
-            <div class="stats-grid reveal reveal-delay-2">
-                <div class="stat-card"><div class="stat-icon">👤</div><div class="stat-number" id="counterPendaftar" data-target="127">0</div><div class="stat-label-text">Jumlah Pendaftar</div></div>
-                <div class="stat-card"><div class="stat-icon">⚽</div><div class="stat-number" id="counterPosisi" data-target="68">0</div><div class="stat-label-text">Pivot Terfavorit</div></div>
-                <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-number" id="counterTurnamen" data-target="43">0</div><div class="stat-label-text">Berpengalaman Turnamen</div></div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="footer">
-            <p>© 2025 <span class="accent">SMAN 1 Rogojampi</span> • Seleksi Tim Futsal • Event <span class="accent">AXIS</span></p>
-            <p style="margin-top:4px;">#GarudaMudaRogojampi #AXISEvent</p>
-        </footer>
-    </div>
-
-    <!-- JAVASCRIPT -->
     <script>
-        (function() {
-            const navbar = document.getElementById('navbar');
-            const floatingCards = document.querySelectorAll('.floating-card');
-            const submitBtn = document.getElementById('submitBtn');
-            const successOverlay = document.getElementById('successOverlay');
-            const timelineContainer = document.getElementById('timelineContainer');
-            const timelineProgress = document.getElementById('timelineProgress');
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const revealElements = document.querySelectorAll('.reveal');
-            const counterPendaftar = document.getElementById('counterPendaftar');
-            const counterPosisi = document.getElementById('counterPosisi');
-            const counterTurnamen = document.getElementById('counterTurnamen');
-            const particlesCanvas = document.getElementById('particles-canvas');
+        let posisiUtama = '', posisiCadangan = '';
 
-            let posisiUtama = '';
-            let posisiCadangan = '';
-
-            // Navbar scroll
-            function handleNavScroll() {
-                if (window.scrollY > 50) navbar.classList.add('scrolled');
-                else navbar.classList.remove('scrolled');
-            }
-            window.addEventListener('scroll', handleNavScroll, { passive: true });
-            handleNavScroll();
-
-            // Parallax
-            function handleParallax(e) {
-                const mouseX = e.clientX, mouseY = e.clientY;
-                const centerX = window.innerWidth / 2, centerY = window.innerHeight / 2;
-                const deltaX = (mouseX - centerX) / centerX, deltaY = (mouseY - centerY) / centerY;
-                floatingCards.forEach(card => {
-                    const speed = parseFloat(card.getAttribute('data-speed')) || 0.04;
-                    card.style.transform = `translate(${deltaX * speed * 80}px, ${deltaY * speed * 60}px)`;
-                });
-            }
-            document.addEventListener('mousemove', handleParallax, { passive: true });
-
-            // Particles
-            const ctx = particlesCanvas.getContext('2d');
-            let particles = [];
-            const particleCount = 50;
-            function resizeCanvas() {
-                particlesCanvas.width = window.innerWidth;
-                particlesCanvas.height = window.innerHeight;
-            }
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            class Particle {
-                constructor() { this.reset(); }
-                reset() {
-                    this.x = Math.random() * particlesCanvas.width;
-                    this.y = Math.random() * particlesCanvas.height;
-                    this.size = Math.random() * 2 + 0.8;
-                    this.speedX = (Math.random() - 0.5) * 0.5;
-                    this.speedY = (Math.random() - 0.5) * 0.5;
-                    this.opacity = Math.random() * 0.4 + 0.1;
-                    this.pulseSpeed = Math.random() * 0.02 + 0.005;
-                    this.pulseOffset = Math.random() * Math.PI * 2;
-                }
-                update(time) {
-                    this.x += this.speedX; this.y += this.speedY;
-                    if (this.x < 0 || this.x > particlesCanvas.width) this.speedX *= -1;
-                    if (this.y < 0 || this.y > particlesCanvas.height) this.speedY *= -1;
-                    this.currentOpacity = this.opacity + Math.sin(time * this.pulseSpeed + this.pulseOffset) * 0.15;
-                    this.currentOpacity = Math.max(0.03, Math.min(0.6, this.currentOpacity));
-                }
-                draw(ctx) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(163,230,53,${this.currentOpacity})`;
-                    ctx.fill();
-                }
-            }
-            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-            function animateParticles(timestamp) {
-                ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-                particles.forEach(p => { p.update(timestamp); p.draw(ctx); });
-                requestAnimationFrame(animateParticles);
-            }
-            requestAnimationFrame(animateParticles);
-
-            // Position selector
-            function setupPositionSelector(containerId) {
-                const cards = document.querySelectorAll(`#${containerId} .position-card`);
-                cards.forEach(card => {
-                    card.addEventListener('click', () => {
-                        cards.forEach(c => c.classList.remove('selected'));
-                        card.classList.add('selected');
-                        if (containerId === 'posisiUtamaSelector') posisiUtama = card.getAttribute('data-pos');
-                        else posisiCadangan = card.getAttribute('data-pos');
-                    });
-                });
-            }
-            setupPositionSelector('posisiUtamaSelector');
-            setupPositionSelector('posisiCadanganSelector');
-
-            // ==================== FORM SUBMIT KE GOOGLE FORM ====================
-            window.handleFormSubmit = function() {
-                if (!posisiUtama || !posisiCadangan) {
-                    alert('Silakan pilih Posisi Utama dan Posisi Cadangan terlebih dahulu.');
-                    return false;
-                }
-
-                // Isi hidden inputs dengan data dari form
-                document.getElementById('entry0').value = document.getElementById('nama').value.trim();
-                document.getElementById('entry1').value = document.getElementById('kelas').value;
-                document.getElementById('entry2').value = document.getElementById('jurusan').value;
-                document.getElementById('entry3').value = document.getElementById('absen').value.trim();
-                document.getElementById('entry4').value = document.getElementById('whatsapp').value.trim();
-                document.getElementById('entry5').value = posisiUtama;
-                document.getElementById('entry6').value = posisiCadangan;
-                document.getElementById('entry7').value = document.getElementById('tinggi').value;
-                document.getElementById('entry8').value = document.getElementById('berat').value;
-                document.getElementById('entry9').value = document.getElementById('pengalaman').value;
-                document.getElementById('entry10').value = document.getElementById('cedera').value.trim() || '-';
-                document.getElementById('entry11').value = document.getElementById('alasan').value.trim();
-
-                // Loading
-                submitBtn.classList.add('loading');
-                submitBtn.disabled = true;
-
-                // Tampilkan sukses setelah 1 detik
-                setTimeout(() => {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    successOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    document.getElementById('registrationForm').reset();
-                    // Reset posisi
-                    document.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
-                    posisiUtama = '';
-                    posisiCadangan = '';
-                }, 1000);
-
-                return true;
-            };
-
-            // Success overlay
-            window.closeSuccess = function() {
-                successOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-            successOverlay.addEventListener('click', function(e) {
-                if (e.target === successOverlay) closeSuccess();
-            });
-
-            // Reveal animations
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
-                });
-            }, { rootMargin: '0px 0px -60px 0px', threshold: 0.15 });
-            revealElements.forEach(el => revealObserver.observe(el));
-
-            // Timeline animation
-            const timelineObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => { timelineProgress.style.width = '92%'; }, 300);
-                        timelineItems.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.classList.add('active');
-                                if (index < timelineItems.length - 1) item.classList.add('completed');
-                            }, index * 350);
-                        });
-                        timelineObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.4 });
-            if (timelineContainer) timelineObserver.observe(timelineContainer);
-
-            // Counter animation
-            function animateCounter(element, target, duration = 1800) {
-                const start = 0, startTime = performance.now();
-                function update(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    element.textContent = Math.round(start + (target - start) * eased);
-                    if (progress < 1) requestAnimationFrame(update);
-                    else element.textContent = target;
-                }
-                requestAnimationFrame(update);
-            }
-            const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounter(counterPendaftar, parseInt(counterPendaftar.getAttribute('data-target')) || 127);
-                        animateCounter(counterPosisi, parseInt(counterPosisi.getAttribute('data-target')) || 68);
-                        animateCounter(counterTurnamen, parseInt(counterTurnamen.getAttribute('data-target')) || 43);
-                        counterObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            const statsGrid = document.querySelector('.stats-grid');
-            if (statsGrid) counterObserver.observe(statsGrid);
-
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const targetEl = document.querySelector(targetId);
-                    if (targetEl) { e.preventDefault(); targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        function setupPosition(id) {
+            document.querySelectorAll(`#${id} .position-card`).forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll(`#${id} .position-card`).forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    if (id === 'posisiUtamaSelector') posisiUtama = card.getAttribute('data-pos');
+                    else posisiCadangan = card.getAttribute('data-pos');
                 });
             });
+        }
+        setupPosition('posisiUtamaSelector');
+        setupPosition('posisiCadanganSelector');
 
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        function handleSubmit() {
+            if (!posisiUtama || !posisiCadangan) {
+                alert('Pilih Posisi Utama dan Cadangan dulu!');
+                return false;
+            }
+
+            // Isi hidden inputs
+            document.getElementById('eNama').value = document.getElementById('nama').value;
+            document.getElementById('eKelas').value = document.getElementById('kelas').value;
+            document.getElementById('eJurusan').value = document.getElementById('jurusan').value;
+            document.getElementById('eNISN').value = document.getElementById('nisn').value;
+            document.getElementById('eWA').value = document.getElementById('wa').value;
+            document.getElementById('ePosisiUtama').value = posisiUtama;
+            document.getElementById('ePosisiCadangan').value = posisiCadangan;
+            document.getElementById('eTinggi').value = document.getElementById('tinggi').value;
+            document.getElementById('eBerat').value = document.getElementById('berat').value;
+            document.getElementById('ePengalaman').value = document.getElementById('pengalaman').value;
+            document.getElementById('eCedera').value = document.getElementById('cedera').value || '-';
+            document.getElementById('eAlasan').value = document.getElementById('alasan').value;
+
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').textContent = '⏳ Mengirim...';
+
+            // Tampilkan sukses setelah 2 detik
             setTimeout(() => {
-                const heroLeft = document.querySelector('.hero-left');
-                if (heroLeft) heroLeft.classList.add('visible');
-            }, 200);
+                document.getElementById('successOverlay').classList.add('active');
+                document.body.style.overflow = 'hidden';
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').textContent = '🚀 Kirim Pendaftaran';
+            }, 2000);
 
-            console.log('⚽ Seleksi Tim Futsal SMAN 1 Rogojampi - Siap!');
-            console.log('📋 Data dikirim langsung ke Google Form.');
-        })();
+            return true;
+        }
+
+        function closeSuccess() {
+            document.getElementById('successOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('registrationForm').reset();
+            document.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
+            posisiUtama = ''; posisiCadangan = '';
+        }
     </script>
 </body>
 </html>
